@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+	<link rel="shortcut icon" href="{{ url_for('static', filename='icon.ico') }}">
+	<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+	<link href="./static/style.css" rel="stylesheet">
+	<title>Weather Application</title>
+</head>
+<body style="background-color:#E6E6FA">
+	<div>
+		<nav class="navbar" style="background-color:#7F00FF">
+		  <div class="container-fluid">
+		    <a class="navbar-brand" href="/">
+		    	<h2 style="color:white;font-weight: bold;font-size: 30px">Yuns'z Weather Application</h2>
+		    </a>
+		  </div>
+		</nav>
+	</div>
+
+	<div class="text-center mt-5">
+		<form action="/" method="post">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm">
+						<input type="text" name="cityName" id="cityName" placeholder="city" class="form-control">
+					</div>
+					<div class="col-sm">
+						<input type="text" name="stateName" id="stateName" placeholder="state" class="form-control">
+					</div>
+					<div class="col-sm">
+						<input type="text" name="countryName" id="countryName" placeholder="country" class="form-control">
+					</div>
+				</div>
+			</div>
+			<button class="p-3 btn mt-5" style="background-color:#7F00FF;color:white;"><span>Search</span></button>
+		</form>
+	</div>
+	{% if data %}
+	  <div class="container py-5 h-100">
+
+	    <div class="row d-flex justify-content-center align-items-center h-100">
+	      <div class="col-md-8 col-lg-6 col-xl-4">
+
+	        <div class="card mt-5" style="color: white; border-radius: 35px;background-color: #8F00FF;">
+	          <div class="card-body p-4">
+	          
+	            <div class="d-flex">
+	              <h6 class="flex-grow-1">{{data.state}}</h6>
+	              <h6>{{data.country}}</h6>
+	            </div>
+
+	            <div class="d-flex flex-column text-center mt-5 mb-4">
+	              <h6 id="temp" class="display-4 mb-0 font-weight-bold" style="color: #1C2331;"> {{data.temperature}}°C </h6>
+	              <span class="small" style="color: white">{{data.main}} : {{data.description}}</span>
+	            </div>
+
+	            <div class="d-flex align-items-center">
+	              <div class="flex-grow-1" style="font-size: 1rem;">
+	                <div> <span class="material-symbols-outlined mt-2" style="font-size:21px;color:black;">humidity_percentage</span> <span class="ms-1" style="font-size:23px"> {{data.humidity}}%
+                  </span></div>
+	                <div> <span class="material-symbols-outlined mt-2" style="color:black;font-size: 21px;">air</span><span class="ms-1" style="font-size:23px"> {{data.wind}}km/h</span></div>
+	        
+	              </div>
+	              <div>
+	                <img src="https://openweathermap.org/img/wn/{{data.icon}}@2x.png"
+	                  width="100px" alt="Icon">
+	              </div>
+	            </div>
+
+	          </div>
+	        </div>
+
+	      </div>
+	    </div>
+
+	  </div>
+	  {%endif%}
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+</body>
+</html>
